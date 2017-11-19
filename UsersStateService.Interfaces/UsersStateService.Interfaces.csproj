@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <Configurations>Debug;Release;Standalone</Configurations>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="2.8.211" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Standalone|x64'">
+    <ProjectReference Include="..\ServiceFabricStandalone\ServiceFabricStandalone.csproj" />
+  </ItemGroup>
+
+</Project>
