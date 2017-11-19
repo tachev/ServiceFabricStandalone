@@ -20,15 +20,15 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.ServiceFabric" Version="6.0.211" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="2.8.211" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.8.211" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
-    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.8.211" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PackageReference Include="Microsoft.ServiceFabric" Version="6.0.211"  />
+    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="2.8.211" />
+    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.8.211"  />
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.8.211" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Standalone|x64'">
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.0"  Condition="'$(Configuration)|$(Platform)'=='Standalone|x64'"/>
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.0"  />
     <ProjectReference Include="..\ServiceFabricStandalone\ServiceFabricStandalone.csproj" />
     <ProjectReference Include="..\UsersStateService\UsersStateService.csproj" />
   </ItemGroup>
