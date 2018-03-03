@@ -9,5 +9,7 @@ namespace Microsoft.ServiceFabric.Data.Collections
 	{
 		Task<ConditionalValue<TValue>> TryGetValueAsync(ITransaction tx, TKey key);
 		Task<TValue> AddOrUpdateAsync(ITransaction transaction, TKey key, TValue addValue, Func<TKey, TValue, TValue> updateValueFactory);
+		Task TryRemoveAsync(ITransaction tx, TKey key);
+		Task<bool> ContainsKeyAsync(ITransaction tx, TKey key);
 	}
 }

@@ -18,17 +18,10 @@ namespace Microsoft.ServiceFabric.Services.Remoting.Client
             return (T)ServiceRuntime.CreateService(serviceTypeName, new StatelessServiceContext());
         }
 
-		public static T Create<T>(Uri uri, ServicePartitionKey partitionKey) where T: StatefulService
+		public static T Create<T>(Uri uri, ServicePartitionKey partitionKey) where T: IService
 		{
 			string serviceTypeName = uri.Segments.Last() + "Type";
-			var service = (T)ServiceRuntime.CreateService(serviceTypeName, new StatefulServiceContext());
-
-			if (service is StatefulService)
-			{
-
-			}
-
-			return service;
+			return (T)ServiceRuntime.CreateService(serviceTypeName, new StatefulServiceContext());
 		}
 	}
 }

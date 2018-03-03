@@ -14,8 +14,9 @@ namespace Microsoft.ServiceFabric.Services.Runtime
 
 		public StatefulService(StatefulServiceContext context)
         {
-
-        }
+			//TODO: Is that the right place to run this?
+			Task.Factory.StartNew(async () => { await RunAsync(CancellationToken.None); }, TaskCreationOptions.LongRunning);
+		}
 
 		public IReliableStateManager StateManager {
 			get
@@ -40,7 +41,7 @@ namespace Microsoft.ServiceFabric.Services.Runtime
 		}
 
 
-		protected virtual async Task RunAsync(CancellationToken cancellationToken)
+		protected override async Task RunAsync(CancellationToken cancellationToken)
         {
             await Task.Run(() =>
             {

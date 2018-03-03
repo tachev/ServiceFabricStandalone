@@ -29,12 +29,26 @@ namespace Microsoft.ServiceFabric.Data
             });
         }
 
+		//TODO: remove that
+		public Task<T> GetStateAsync<T>(string key)
+		{
+			return Task.Run(() =>
+			{
+				return (T)_states[key];
+			});
+		}
+
+
 		public T CreateInstance<T>() where T : class, IReliableState // IReliableDictionary<string, string>
 		{
 			//TODO: Hack. replace it with a factory and use dependecy injection for the different types
 			if (typeof(T) == typeof(IReliableDictionary<string, string>))
 			{
 				var instance = new ReliableDictionary<string, string>();
+				return instance as T;
+			} else if (typeof(T) == typeof(IReliableDictionary<string, List<string>>))
+			{
+				var instance = new ReliableDictionary<string, List<string>>();
 				return instance as T;
 			}
 

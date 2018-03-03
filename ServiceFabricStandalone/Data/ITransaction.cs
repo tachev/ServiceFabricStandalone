@@ -8,5 +8,6 @@ namespace Microsoft.ServiceFabric.Data
 	public interface ITransaction : IDisposable
 	{
 		Task CommitAsync();
+		void Abort();
 	}
 }

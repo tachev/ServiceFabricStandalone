@@ -14,8 +14,7 @@ namespace Microsoft.ServiceFabric.Data
 
 		public async Task CommitAsync()
 		{
-			//TODO: Make this more generic
-			var store = Store as ReliableDictionary<string, string>;
+			var store = Store as ICommitable;
 			if (store != null)
 			{
 				await store.CommitTransactionAsync(this);
@@ -24,6 +23,12 @@ namespace Microsoft.ServiceFabric.Data
 
 		public void Dispose()
 		{
+		}
+
+		public void Abort()
+		{
+			Store = null;
+			TransactionObject = null;
 		}
 
 		internal object TransactionObject { get; set; }

@@ -28,7 +28,7 @@ namespace WebSite
 			get
 			{
 				userId = 0;//TODO: Add logic to get the currently logged user
-				return ServiceProxy.Create<UsersStateService.UsersStateService>(_serviceUri, partitionKey:new Microsoft.ServiceFabric.Services.Client.ServicePartitionKey(userId));
+				return ServiceProxy.Create<IUsersStateService>(_serviceUri, partitionKey:new Microsoft.ServiceFabric.Services.Client.ServicePartitionKey(userId));
 			}
 		}
 
